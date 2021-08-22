@@ -128,4 +128,4 @@ const getInternData = () => {
     });
 }
 
-getManagerData().then(teamData => generatePage(teamData));  
+getManagerData().then(teamData => generatePage(teamData)).then(data => console.log(data));  

@@ -1,54 +1,40 @@
 
+const generateRoleSpecificItem = (teamMember) => {
+    if(teamMember.getRole() === 'Manager') {
+        return teamMember.getOfficeNumber(); 
+    } else if (teamMember.getRole() === 'Engineer') {
+        return teamMember.getGithub(); 
+    } else {
+        return teamMember.getSchool(); 
+    }
+}
 
-const getManager = function (teamMembers) {
+
+const generateTeamCards = (teamMembers) => {
 
     const managers = teamMembers.filter(teamMember => teamMember.getRole() === 'Manager');
+    const engineers = teamMembers.filter(teamMember => teamMember.getRole() === 'Engineer');
+    const interns = teamMembers.filter(teamMember => teamMember.getRole() === 'Intern');
 
-    return managers.map(manager => {
+    const sortedTeamMembers= [...managers, ...engineers, ...interns]; 
+
+    return sortedTeamMembers.map(teamMember => {
         return `
         <div class = "col-2 card">
             <div class = "card-body">
-                <h5 class = "card-title">${manager.getName()}</h5>
-                <h6 class = "card-subtitle">${manager.getRole()}</h6> 
+                <h5 class = "card-title">${teamMember.getName()}</h5>
+                <h6 class = "card-subtitle">${teamMember.getRole()}</h6> 
                 <ul class = "card-text list-group">
-                    <li class = "list-group-item">${manager.getId()}</li> 
-                    <li class = "list-group-item">${manager.getEmail()}</li>
-                    <li class = "list-group-item"> ${manager.getOfficeNumber()}</li>
+                    <li class = "list-group-item">${teamMember.getId()}</li> 
+                    <li class = "list-group-item">${teamMember.getEmail()}</li>
+                    <li class = "list-group-item">${generateRoleSpecificItem(teamMember)}<li>
                 </ul>
             </div>
         </div>
         `;
-    })
-}
-
-const getEngineers = function (teamMembers) {
-    const engineers = teamMembers.filter(teamMember => teamMember.getRole() === 'Engineer');
-
-    return engineers.map(engineer => {
-        return `
-        ${engineer.getName()} <br />
-        ${engineer.getId()} <br />
-        ${engineer.getEmail()} <br />
-        ${engineer.getGithub()} <br />
-        `;
-    }).join(' ');
+    }).join(''); 
 
 }
-
-const getInterns = function (teamMembers) {
-    const interns = teamMembers.filter(teamMember => teamMember.getRole() === 'Intern');
-
-    return interns.map(intern => {
-        return `
-        ${intern.getName()} <br />
-        ${intern.getId()} <br />
-        ${intern.getEmail()} <br />
-        ${intern.getSchool()} <br />
-        `;
-    }).join(' ');
-
-}
-
 
 const generatePage = (teamData) => {
     return `
@@ -63,11 +49,7 @@ const generatePage = (teamData) => {
     <body>
         <main class="container">
             <div class="flex-row">
-                ${getManager(teamData)}
-
-                ${getEngineers(teamData)}
-
-                ${getInterns(teamData)}
+                ${generateTeamCards(teamData)}
             </div>
         </main>
     </body>
