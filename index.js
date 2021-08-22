@@ -36,17 +36,57 @@ const getManagerData = function() {
             {
                 type: 'input',
                 name: 'name',
-                message: "Enter the team manager's name: "
+                message: "Enter the team manager's name: ", 
+                validate: nameInput => {
+                    if(nameInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the team member's name!"); 
+                        return false; 
+                    }
+                }
             },
             {
                 type: 'input',
                 name: 'id',
-                message: "Enter the team manager's ID: "
+                message: "Enter the team manager's ID: ",
+                validate: idInput => {
+                    // If the input is not a number or empty, the user will be given a message informing them of that. Otherwise, valid and can continue
+                    if (isNaN(idInput) || !idInput) {
+                        return "This input is meant to be a number! (Start typing to dismiss this message)"
+                    } else {
+                        return true; 
+                    }
+                },
+                // Filter is neccesary to remove the past invalid input. Thus return blank if the input is not a number and return the value if it is a number 
+                filter: idInput => {
+                    if (isNaN(idInput)) {
+                        return "";
+                    } else {
+                        return idInput; 
+                    }
+                }
             },
             {
                 type: 'input',
                 name: 'email',
-                message: "Enter the team manager's email: "
+                message: "Enter the team manager's email: ",
+                validate: emailInput => {
+                    // Check if there is an "@" sign in the email input
+                    if(emailInput.includes('@')) {
+                        return true; 
+                    } else {
+                        return "Please enter a valid email address!(Start typing to dismiss this message)"
+                    }
+                },
+                // Again, filter is used to clear old input or pass on valid input
+                filter: emailInput => {
+                    if(emailInput.includes('@')) {
+                        return emailInput; 
+                    } else {
+                        return ""; 
+                    }
+                }
             },
             {
                 type: 'input',
