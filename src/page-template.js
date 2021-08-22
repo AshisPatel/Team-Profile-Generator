@@ -20,7 +20,7 @@ const generateTeamCards = (teamMembers) => {
 
     return sortedTeamMembers.map(teamMember => {
         return `
-        <div class = "card col-3">
+        <div class = "card col-3 m-3">
             <div class = "card-body">
                 <h5 class = "card-title">${teamMember.getName()}</h5>
                 <h6 class = "card-subtitle mb-2">${teamMember.getRole()}</h6> 
@@ -48,7 +48,7 @@ const generatePage = (teamData) => {
     </head>
     <body>
         <main class="container">
-            <div class= "d-flex flex-row justify-content-around">
+            <div class= "d-flex flex-row justify-content-center">
                 ${generateTeamCards(teamData)}
             </div>
         </main>
