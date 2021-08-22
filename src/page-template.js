@@ -20,14 +20,14 @@ const generateTeamCards = (teamMembers) => {
 
     return sortedTeamMembers.map(teamMember => {
         return `
-        <div class = "col-2 card">
+        <div class = "card col-3">
             <div class = "card-body">
                 <h5 class = "card-title">${teamMember.getName()}</h5>
-                <h6 class = "card-subtitle">${teamMember.getRole()}</h6> 
+                <h6 class = "card-subtitle mb-2">${teamMember.getRole()}</h6> 
                 <ul class = "card-text list-group">
                     <li class = "list-group-item">${teamMember.getId()}</li> 
                     <li class = "list-group-item">${teamMember.getEmail()}</li>
-                    <li class = "list-group-item">${generateRoleSpecificItem(teamMember)}<li>
+                    <li class = "list-group-item">${generateRoleSpecificItem(teamMember)}</li>
                 </ul>
             </div>
         </div>
@@ -48,7 +48,7 @@ const generatePage = (teamData) => {
     </head>
     <body>
         <main class="container">
-            <div class="flex-row">
+            <div class= "d-flex flex-row justify-content-around">
                 ${generateTeamCards(teamData)}
             </div>
         </main>
