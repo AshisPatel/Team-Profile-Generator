@@ -4,6 +4,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
 const generatePage = require('./src/page-template'); 
+const {writeFile, copyFile} = require('./utils/generate-site'); 
 // Initialize array to hold all team members
 teamMembers = []; 
 // Create function to check if the user wants to add an engineer, intern, or if they're done. 
@@ -128,4 +129,12 @@ const getInternData = () => {
     });
 }
 
-getManagerData().then(teamData => generatePage(teamData)).then(data => console.log(data));  
+getManagerData()
+    .then(teamData => generatePage(teamData))
+    .then(siteHTML => writeFile(siteHTML))
+    .then(writeFileResponse => {
+        console.log(writeFileResponse.message); 
+    })
+    .catch(err => {
+        console.log(err); 
+    })
