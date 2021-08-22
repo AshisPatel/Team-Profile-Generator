@@ -92,6 +92,22 @@ const getEmployeeData = function (type) {
                 type: 'input',
                 name: 'officeNumber',
                 message: "Enter the team manager's office number: ",
+                validate: officeNumberInput => {
+                    // If the input is not a number or empty, the user will be given a message informing them of that. Otherwise, valid and can continue
+                    if (isNaN(officeNumberInput) || !officeNumberInput) {
+                        return "This input is meant to be a number! (Start typing to dismiss this message)";
+                    } else {
+                        return true;
+                    }
+                },
+                // Filter is neccesary to remove the past invalid input. Thus return blank if the input is not a number and return the value if it is a number 
+                filter: officeNumberInput => {
+                    if (isNaN(officeNumberInput)) {
+                        return "";
+                    } else {
+                        return officeNumberInput;
+                    }
+                },
                 when: () => {
                     if (type) {
                         return false;
@@ -104,6 +120,14 @@ const getEmployeeData = function (type) {
                 type: 'input',
                 name: 'github',
                 message: "Enter the engineer's Github: ",
+                validate: githubInput => {
+                    if(githubInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter in the engineer's Github username!"); 
+                        return false; 
+                    }
+                },
                 when: () => {
                     if (type === 'Engineer') {
                         return true;
@@ -116,6 +140,14 @@ const getEmployeeData = function (type) {
                 type: 'input',
                 name: 'school',
                 message: "Enter the intern's school: ",
+                validate: schoolInput => {
+                    if(schoolInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter in the intern's school!"); 
+                        return false; 
+                    }
+                },
                 when: () => {
                     if (type === 'Intern') {
                         return true;
