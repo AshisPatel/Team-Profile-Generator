@@ -23,7 +23,7 @@ const getNextMember = () => {
             if (nextMember === 'Engineer') {
                 return getEmployeeData(nextMember);
             } else if (nextMember === 'Intern') {
-                return getEmployeeData(nextMember); 
+                return getEmployeeData(nextMember);
             } else {
                 return teamMembers;
             }
@@ -31,6 +31,17 @@ const getNextMember = () => {
 }
 
 const getEmployeeData = function (type) {
+    // Console log a message to let the user know the employee role that they are inputting information for! 
+    if (type) {
+        console.log(`
+        You are entering in employee information for an ${type.toLowerCase()}.
+        `);
+    } else {
+        console.log(`
+        You are entering in employee information for the team manager.
+        `);
+    }
+
     return inquirer
         .prompt([
             {
@@ -121,11 +132,11 @@ const getEmployeeData = function (type) {
                 name: 'github',
                 message: "Enter the engineer's Github: ",
                 validate: githubInput => {
-                    if(githubInput) {
+                    if (githubInput) {
                         return true;
                     } else {
-                        console.log("Please enter in the engineer's Github username!"); 
-                        return false; 
+                        console.log("Please enter in the engineer's Github username!");
+                        return false;
                     }
                 },
                 when: () => {
@@ -141,11 +152,11 @@ const getEmployeeData = function (type) {
                 name: 'school',
                 message: "Enter the intern's school: ",
                 validate: schoolInput => {
-                    if(schoolInput) {
+                    if (schoolInput) {
                         return true;
                     } else {
-                        console.log("Please enter in the intern's school!"); 
-                        return false; 
+                        console.log("Please enter in the intern's school!");
+                        return false;
                     }
                 },
                 when: () => {
@@ -181,9 +192,9 @@ getEmployeeData()
     .then(teamData => generatePage(teamData))
     .then(siteHTML => writeFile(siteHTML))
     .then(writeFileResponse => {
-        console.log(writeFileResponse.message); 
+        console.log(writeFileResponse.message);
     })
     .catch(err => {
-        console.log(err); 
+        console.log(err);
     })
 
