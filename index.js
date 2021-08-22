@@ -1,6 +1,9 @@
 const inquirer = require('inquirer');
 
-
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern'); 
+const generatePage = require('./src/page-template'); 
 // Initialize array to hold all team members
 teamMembers = []; 
 // Create function to check if the user wants to add an engineer, intern, or if they're done. 
@@ -21,13 +24,12 @@ const getNextMember = () => {
             } else if (nextMember === 'Intern') {
                 return getInternData(); 
             } else {
-                console.log(teamMembers); 
                 return teamMembers; 
             }
         })
 }
 
-const getManagerData = () => {
+const getManagerData = function() {
     return inquirer
         .prompt([
             {
@@ -52,9 +54,10 @@ const getManagerData = () => {
             }
         ])
         .then(managerData => {
-            managerData.role = 'Manager'; 
-            teamMembers.push(managerData); 
-           return getNextMember();
+            const {name, id, email, officeNumber} = managerData; 
+            const manager = new Manager(name, id, email, officeNumber); 
+            teamMembers.push(manager); 
+            return getNextMember();
         });
         
 }
@@ -85,9 +88,10 @@ const getEngineerData = () => {
                 message: "Enter engineer's Github: "
             }
         ])
-        .then(memberData => {
-            memberData.role = 'Engineer'; 
-            teamMembers.push(memberData); 
+        .then(engineerData => {
+            const {name, id, email, github} = engineerData; 
+            const engineer = new Engineer(name, id, email, github); 
+            teamMembers.push(engineer); 
             return getNextMember(); 
         });
 }
@@ -112,15 +116,16 @@ const getInternData = () => {
         },
         {
             type: 'input',
-            name: 'github',
+            name: 'school',
             message: "Enter intern's school: "
         }
     ])
-    .then(memberData => {
-        memberData.role = 'Intern'; 
-        teamMembers.push(memberData);
+    .then(internData => {
+        const {name, id, email, school} = internData;
+        const intern = new Intern(name, id, email, school); 
+        teamMembers.push(intern);
         return getNextMember(); 
     });
 }
 
-getManagerData();
+getManagerData().then(teamData => generatePage(teamData));  
