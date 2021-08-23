@@ -36,7 +36,7 @@ const generateTeamCards = (teamMembers) => {
 
 }
 
-const generatePage = (teamData) => {
+const generatePage = (teamMembers, teamName) => {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -49,11 +49,11 @@ const generatePage = (teamData) => {
     </head>
     <body>
         <header class="text-center p-2">
-            <h1>My Team</h1>
+            <h1>${teamName}</h1>
         </header>
         <main class="container">
             <div class= "d-flex flex-row justify-content-center align-items-center flex-wrap  card-wrapper">
-                ${generateTeamCards(teamData)}
+                ${generateTeamCards(teamMembers)}
             </div>
         </main>
     </body>

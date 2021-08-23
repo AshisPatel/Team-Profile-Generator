@@ -6,7 +6,36 @@ const Intern = require('./lib/Intern');
 const generatePage = require('./src/page-template');
 const { writeFile, copyFile } = require('./utils/generate-site');
 // Initialize array to hold all team members
-teamMembers = [];
+const teamMembers = [];
+// Initialize variable to hold team name 
+let teamName = '';
+
+// Const initialize prompt chain by asking for the team name
+
+const startTeamGen = () => {
+    console.log(`
+    Welcome to the team generator!
+    `);
+
+    return inquirer
+        .prompt(
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Enter a name for your team (optional): '
+            }
+        )
+        .then(teamData => {
+            // Set team name to 'My Team' if no input was given
+            if(teamData.name === '') {
+                teamData.name = 'My Team';
+            }
+            // Set team name equal to provided input
+            teamName = teamData.name;  
+            // Call function to get employee data
+            return getEmployeeData(); 
+        })
+}
 // Create function to check if the user wants to add an engineer, intern, or if they're done. 
 const getNextMember = () => {
     return inquirer
@@ -188,8 +217,8 @@ const getEmployeeData = function (type) {
         })
 }
 
-getEmployeeData()
-    .then(teamData => generatePage(teamData))
+startTeamGen()
+    .then(teamData => generatePage(teamData, teamName))
     .then(siteHTML => writeFile(siteHTML))
     .then(writeFileResponse => {
         console.log(writeFileResponse);

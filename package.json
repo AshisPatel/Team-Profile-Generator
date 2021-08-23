@@ -1,7 +1,6 @@
 {
   "name": "team-profile-generator-week-10-challenge",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -23,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/AshisPatel/Team-Profile-Generator-Week-10-Challenge/issues"
   },
-  "homepage": "https://github.com/AshisPatel/Team-Profile-Generator-Week-10-Challenge#readme"
+  "homepage": "https://github.com/AshisPatel/Team-Profile-Generator-Week-10-Challenge#readme",
+  "description": ""
 }
