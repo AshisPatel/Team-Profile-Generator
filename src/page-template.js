@@ -20,7 +20,7 @@ const generateTeamCards = (teamMembers) => {
 
     return sortedTeamMembers.map(teamMember => {
         return `
-        <div class = "card col-3 m-3">
+        <div class = "card col-6 col-lg-3 m-3">
             <div class = "card-body">
                 <h5 class = "card-title">${teamMember.getName()}</h5>
                 <h6 class = "card-subtitle mb-2">${teamMember.getRole()}</h6> 
@@ -44,11 +44,15 @@ const generatePage = (teamData) => {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet" />
         <title>Team Builder</title>
     </head>
     <body>
+        <header class="text-center p-2">
+            <h1>My Team</h1>
+        </header>
         <main class="container">
-            <div class= "d-flex flex-row justify-content-center">
+            <div class= "d-flex flex-row justify-content-center align-items-center flex-wrap  card-wrapper">
                 ${generateTeamCards(teamData)}
             </div>
         </main>
