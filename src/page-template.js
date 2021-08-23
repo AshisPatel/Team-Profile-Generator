@@ -22,8 +22,8 @@ const generateTeamCards = (teamMembers) => {
         return `
         <div class = "card col-6 col-lg-3 m-3">
             <div class = "card-body">
-                <h5 class = "card-title">${teamMember.getName()}</h5>
-                <h6 class = "card-subtitle mb-2">${teamMember.getRole()}</h6> 
+                <h3 class = "card-title">${teamMember.getName()}</h3>
+                <h4 class = "card-subtitle mb-2">${teamMember.getRole()}</h4> 
                 <ul class = "card-text list-group">
                     <li class = "list-group-item">${teamMember.getId()}</li> 
                     <li class = "list-group-item">${teamMember.getEmail()}</li>
@@ -43,6 +43,9 @@ const generatePage = (teamMembers, teamName) => {
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link href="style.css" rel="stylesheet" />
         <title>Team Builder</title>

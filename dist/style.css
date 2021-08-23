@@ -6,12 +6,18 @@
 }
 
 body {
-    background-color: var(--pale); 
+    background-color: var(--pale);
+    font-family: 'Work Sans', sans-serif; 
 }
 
 header {
     background-color: var(--red); 
     color: var(--pale); 
+
+}
+
+header h1 {
+    font-weight: bolder; 
 }
 
 .card-wrapper {
@@ -25,6 +31,10 @@ header {
     transition: box-shadow 0.5s ease-in-out; 
 }
 
+.card-subtitle {
+    font-style: italic; 
+}
+
 .list-group-item {
     background-color:  var(--bronze); 
     color: var(--pale); 
@@ -33,5 +43,11 @@ header {
 .list-group-item a {
     color: var(--red); 
     font-weight: bold; 
+    transition: color 0.25s ease-in-out; 
 }
+
+.list-group-item a:hover {
+    color: var(--pale); 
+}
+
 
