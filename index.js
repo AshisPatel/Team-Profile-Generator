@@ -14,7 +14,7 @@ let teamName = '';
 
 const startTeamGen = () => {
     console.log(`
-    Welcome to the team generator!
+    (v✪ᆺ✪)>[Welcome to the team generator!]<(✪ᆺ✪v)
     `);
 
     return inquirer
@@ -63,11 +63,11 @@ const getEmployeeData = function (type) {
     // Console log a message to let the user know the employee role that they are inputting information for! 
     if (type) {
         console.log(`
-        You are entering in employee information for an ${type.toLowerCase()}.
+        (v✪ᆺ✪)>[You are entering in employee information for an ${type.toLowerCase()}.]<(✪ᆺ✪v)
         `);
     } else {
         console.log(`
-        You are entering in employee information for the team manager.
+        (v✪ᆺ✪)>[You are entering in employee information for the team manager.]<(✪ᆺ✪v)
         `);
     }
 
@@ -221,11 +221,12 @@ startTeamGen()
     .then(teamData => generatePage(teamData, teamName))
     .then(siteHTML => writeFile(siteHTML))
     .then(writeFileResponse => {
-        console.log(writeFileResponse);
         return copyFile();
     })
     .then(copyFileResponse => {
-        console.log(copyFileResponse);
+        console.log(`
+         (v✪∇✪)>──☆*:・ﾟ[Your team portfolio has been succesfully generated! Check out the 'index.html' in the dist directory.]*:・ﾟ☆──(✪∇✪v)
+        `);
     })
     .catch(err => {
         console.log(err);
